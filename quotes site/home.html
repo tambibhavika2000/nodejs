@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <title>Quotes Site</title>
+  </head>
+  <body>
+    <input id="card-one" class="hidden" type="radio" name="ok-button" checked />
+    <input id="card-two" class="hidden" type="radio" name="ok-button" />
+    <input id="card-three" class="hidden" type="radio" name="ok-button" />
+
+    <div class="container">
+      <div class="inner inner-one">
+        <div class="box">
+            <i class="start-quote fas fa-quote-left"></i>
+          <div class="triangle"></div>
+          <p class="number"><i id="tweet" class="fab fa-twitter" onclick="mytweet()"></i></p>
+          <div class="text">
+
+            <p class="quote" id="quote">
+            </p>
+            <p class="credit" id="credit"></p>
+          </div>
+            <button id="button" class="button" onclick="getquotes()">Get New Quote</button>
+          </label>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+      const myquote=document.getElementById("quote");
+      const mycredit=document.getElementById("credit");
+      
+      const getquotes=async()=>{
+        const api="https://type.fit/api/quotes";
+        try{
+            let data = await fetch(api);
+            realdata = await data.json();
+            num=Math.floor((Math.random() * 1600) + 1)
+            myquote.innerHTML=realdata[num].text;
+            mycredit.innerHTML=realdata[num].author;
+            const text=realdata[num].text;
+            return `https://twitter.com/intent/tweet?text=${text}`;
+
+        }
+        catch(error){
+            console.log(error);
+        }
+      }
+      const a=getquotes();
+
+      const mytweet=()=>{
+        console.log(a);  
+        window.open(a);
+      }
+
+  </script>
+</html>
