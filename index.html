@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+    --font-color: #222;
+    --bg-color: #f2f3f7;
+    --button-bg-color: #f2f3f7;
+    --sunny: red;
+    --button-shadow: -6px -6px 8px rgba(255, 255, 255, 0.9),
+      5px 5px 8px rgba(0, 0, 0, 0.07);
+  }
+  html {
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+    color: var(--font-color);
+  }
+  *,
+  :after,
+  :before {
+    box-sizing: inherit;
+  }
+  body {
+    background-color: #f2f2f2;
+  }
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 25px;
+    align-items: center;
+    flex-direction: column;
+  }
+  @media screen and (min-width: 800px) {
+    .container {
+      flex-direction: row;
+    }
+  }
+  .app-container {
+    background-color: var(--bg-color);
+    border-radius: 40px;
+    box-shadow: -2px -2px 4px 0 #fff, 50px 50px 50px 0 rgba(0, 0, 0, 0.25);
+    display: block;
+    flex: 1;
+    min-height: 500px;
+    max-width: 350px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    padding: 30px;
+  }
+  .app-top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .app-heading {
+    color: var(--font-color);
+    display: block;
+    flex: 1;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+  }
+  button {
+    border: 0;
+  }
+  button:focus {
+    border: none;
+    outline: 0 !important;
+    outline-style: none;
+  }
+  .button {
+    color: var(--font-color);
+    position: relative;
+    border-radius: 15px;
+    background: var(--button-bg-color);
+    font-weight: 700;
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
+  }
+  button .button-small {
+    color: #6d6e74;
+    font-size: 22px;
+    line-height: 40px;
+    height: 40px;
+  }
+  .button-dial {
+    border-radius: 50%;
+    display: flex;
+    height: 270px;
+    margin: 35px auto;
+    align-items: center;
+    justify-content: center;
+    width: 270px;
+  }
+  .button-dial-top {
+    background: var(--button-bg-color);
+    box-shadow: var(--button-shadow);
+    border-radius: 50%;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    text-align: center;
+    z-index: 5;
+  }
+  .button-dial-label {
+    color: #067cf8;
+    font-size: 28px;
+    fill: #067cf8;
+    position: relative;
+    z-index: 10;
+  }
+  .button-dial-spoke {
+    background-color: rgba(96, 171, 254, 0.6);
+    display: block;
+    height: 2px;
+    width: 83%;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 5;
+    top: 50%;
+  }
+  .button-block {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 24px;
+    width: 100%;
+  }
+  .button-block span {
+    font-size: 16px;
+  }
+  .subtle {
+    color: #6d6e74;
+  }
+  
+    </style>
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-container">
+        <div class="app-top-bar">
+          <button class="button button-small">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <h1 class="app-heading">Weather Stats</h1>
+        </div>
+        <div class="app-content">
+          <button class="button button-block">
+            <span class="subtle">City</span> <span>{%city%}</span>
+          </button>
+          <div class="button button-dial">
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+
+            <div class="button-dial-top"></div>
+            <div class="button-dial-label">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                version="1.1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 125"
+                enable-background="new 0 0 100 100"
+                xml:space="preserve"
+              >
+                <g>
+                  <path
+                    d="M60.333,68.349V11.111C60.333,4.984,55.349,0,49.222,0c-6.126,0-11.111,4.984-11.111,11.111v57.237   c-4.15,3.323-6.667,8.397-6.667,13.874c0,9.802,7.975,17.777,17.777,17.777C59.024,100,67,92.024,67,82.223   C67,76.746,64.482,71.672,60.333,68.349z M44.778,48.363h4.444v-4.444h-4.444V35.03h4.444v-4.444h-4.444v-8.889h4.444v-4.444   h-4.444v-6.142c0-2.455,1.99-4.444,4.444-4.444c2.455,0,4.445,1.989,4.445,4.444v41.111h-8.889V48.363z"
+                  />
+                </g>
+              </svg>
+              <span id="temp">{%temp%}&deg;C</span>
+            </div>
+          </div>
+          <button class="button button-block">
+            <span class="subtle" >Min : </span> <span id="mini">{%mintemp%} &deg;C</span>
+            <span class="subtle" >Max: </span> <span id="maxi">{%maxtemp%} &deg;C</span>
+          </button>
+          <br/>
+          <button class="button button-block">
+            <span style="margin:auto" class="subtle" id="date">DAY | TIME </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+      const mydate=document.getElementById("date");
+      const date = new Date();
+      mydate.innerHTML=date.getDate()+"/"+parseInt(parseInt(date.getMonth())+1)+"/"+date.getFullYear()+" | "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+      if(date.getHours()<=6){
+        document.getElementById("temp").style.color="blue";
+      }
+      else if (6<=date.getHours()<=12){
+        document.getElementById("temp").style.color="green";
+      }
+      else{
+        document.getElementById("temp").style.color="orange";
+      }
+
+  </script>
+</html>
